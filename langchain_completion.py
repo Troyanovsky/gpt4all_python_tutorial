@@ -5,7 +5,7 @@
 from langchain.llms import LlamaCpp
 
 llm = LlamaCpp(
-    model_path="/Users/guodongzhao/Library/Application Support/nomic.ai/GPT4All/ggml-wizardLM-7B.q4_2.bin"
+    model_path="G:\gpt_4_all_v2\gpt_4_all_v2\\bin\ggml-wizardLM-7B.q4_2.bin"
 )
 
 output = llm("Q: Explain AI in one sentence. A: ")
