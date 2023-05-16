@@ -21,7 +21,8 @@ llm = LlamaCpp(
     model_path="G:\gpt_4_all_v2\gpt_4_all_v2\\bin\ggml-wizardLM-7B.q4_2.bin"
 )
 
-# Load the documents
+# Load the document, here I'm using the example.txt in this repo
+# See https://python.langchain.com/en/latest/modules/indexes/document_loaders.html for other data loaders
 loader = TextLoader('example.txt', encoding='utf8')
 documents = loader.load()
 text_splitter = CharacterTextSplitter(chunk_size=1000, chunk_overlap=50)
@@ -30,6 +31,7 @@ texts = text_splitter.split_documents(documents)
 # Create embeddings using InstructorEmbedding from HuggingFace
 embeddings = HuggingFaceInstructEmbeddings(query_instruction="Represent the query for retrieval: ")
 
+# Create vector database with the text and embeddings
 db = Chroma.from_documents(texts, embeddings)
 
 # Since the local LLM has limited token length, retrieve only the top 1 document
